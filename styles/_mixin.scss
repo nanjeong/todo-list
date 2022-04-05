@@ -1,0 +1,12 @@
+@mixin flex-layout($justify-contents: unset, $align-items: unset) {
+    display: flex;
+    justify-content: $justify-contents;
+    align-items: $align-items;
+}
+
+@mixin margin($top: auto, $bottom: auto, $left: auto, $right: auto) {
+    margin-top: $top;
+    margin-bottom: $bottom;
+    margin-left: $left;
+    margin-right: $right;
+}
