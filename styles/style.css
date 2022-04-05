@@ -315,7 +315,7 @@ body {
   height: 12px;
 }
 
-.history {
+#history {
   display: flex;
   justify-content: unset;
   align-items: unset;
