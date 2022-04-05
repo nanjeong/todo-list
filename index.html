@@ -23,23 +23,15 @@
                 />
             </svg>
         </header>
-        <main>
-            <div>
-                <div>
-                    <h2>해야할 일</h2>
+        <main id="main">
+            <div class="schedule-column">
+                <div class="schedule-column__header">
+                    <h2 class="schedule-column__title">해야할 일</h2>
+                    <div class="schedule-column__count-box">
+                        <span class="schedule-column__count-number">0</span>
+                    </div>
                     <svg
-                        width="8"
-                        height="12"
-                        viewBox="0 0 8 12"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M4.00793 11.196C6.12193 11.196 7.50793 9.348 7.50793 5.778C7.50793 2.208 6.12193 0.444 4.00793 0.444C1.89393 0.444 0.49393 2.194 0.49393 5.778C0.49393 9.348 1.89393 11.196 4.00793 11.196ZM4.00793 9.586C3.11193 9.586 2.43993 8.69 2.43993 5.778C2.43993 2.88 3.11193 2.04 4.00793 2.04C4.90393 2.04 5.56193 2.88 5.56193 5.778C5.56193 8.69 4.90393 9.586 4.00793 9.586Z"
-                            fill="#010101"
-                        />
-                    </svg>
-                    <svg
+                        class="schedule-column__add-btn column-btn"
                         width="14"
                         height="14"
                         viewBox="0 0 14 14"
@@ -52,6 +44,7 @@
                         />
                     </svg>
                     <svg
+                        class="schedule-column__delete-btn column-btn"
                         width="12"
                         height="12"
                         viewBox="0 0 12 12"
@@ -64,24 +57,139 @@
                         />
                     </svg>
                 </div>
-                <div>
-                    <div>
-                        <h3>Gib Hub 공부하기</h3>
-                        <p>add, commit</p>
-                        <p>author by web</p>
+                <div class="schedule-column__cards-container">
+                    <div class="schedule-card">
+                        <div class="schedule-card__text-container">
+                            <h3 class="schedule-card__title">Gib Hub 공부하기</h3>
+                            <p class="schedule-card__body">add, commit</p>
+                            <p class="schedule-card__caption">author by web</p>
+                        </div>
+                        <svg
+                            class="schedule-card__delete-btn"
+                            width="12"
+                            height="12"
+                            viewBox="0 0 12 12"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M1.5 11.25L0.75 10.5L5.25 6L0.75 1.5L1.5 0.75L6 5.25L10.5 0.75L11.25 1.5L6.75 6L11.25 10.5L10.5 11.25L6 6.75L1.5 11.25Z"
+                                fill="#828282"
+                            />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="schedule-column">
+                <div class="schedule-column__header">
+                    <h2 class="schedule-column__title">한 일</h2>
+                    <div class="schedule-column__count-box">
+                        <span class="schedule-column__count-number">0</span>
                     </div>
                     <svg
-                        width="12"
-                        height="12"
-                        viewBox="0 0 12 12"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                            class="schedule-column__add-btn column-btn"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 14 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
                     >
                         <path
-                            d="M1.5 11.25L0.75 10.5L5.25 6L0.75 1.5L1.5 0.75L6 5.25L10.5 0.75L11.25 1.5L6.75 6L11.25 10.5L10.5 11.25L6 6.75L1.5 11.25Z"
-                            fill="black"
+                                d="M0.105713 7.53033L0.105713 6.46967H6.46967V0.105713H7.53033V6.46967H13.8943V7.53033H7.53033V13.8943H6.46967V7.53033H0.105713Z"
+                                fill="#BDBDBD"
                         />
                     </svg>
+                    <svg
+                            class="schedule-column__delete-btn column-btn"
+                            width="12"
+                            height="12"
+                            viewBox="0 0 12 12"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                                d="M1.5 11.25L0.75 10.5L5.25 6L0.75 1.5L1.5 0.75L6 5.25L10.5 0.75L11.25 1.5L6.75 6L11.25 10.5L10.5 11.25L6 6.75L1.5 11.25Z"
+                                fill="#BDBDBD"
+                        />
+                    </svg>
+                </div>
+                <div class="schedule-column__cards-container">
+                    <div class="schedule-card">
+                        <div class="schedule-card__text-container">
+                            <h3 class="schedule-card__title">Gib Hub 공부하기</h3>
+                            <p class="schedule-card__body">add, commit</p>
+                            <p class="schedule-card__caption">author by web</p>
+                        </div>
+                        <svg
+                                class="schedule-card__delete-btn"
+                                width="12"
+                                height="12"
+                                viewBox="0 0 12 12"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                    d="M1.5 11.25L0.75 10.5L5.25 6L0.75 1.5L1.5 0.75L6 5.25L10.5 0.75L11.25 1.5L6.75 6L11.25 10.5L10.5 11.25L6 6.75L1.5 11.25Z"
+                                    fill="#828282"
+                            />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="schedule-column">
+                <div class="schedule-column__header">
+                    <h2 class="schedule-column__title">하고있는 일</h2>
+                    <div class="schedule-column__count-box">
+                        <span class="schedule-column__count-number">0</span>
+                    </div>
+                    <svg
+                            class="schedule-column__add-btn column-btn"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 14 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                                d="M0.105713 7.53033L0.105713 6.46967H6.46967V0.105713H7.53033V6.46967H13.8943V7.53033H7.53033V13.8943H6.46967V7.53033H0.105713Z"
+                                fill="#BDBDBD"
+                        />
+                    </svg>
+                    <svg
+                            class="schedule-column__delete-btn column-btn"
+                            width="12"
+                            height="12"
+                            viewBox="0 0 12 12"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                                d="M1.5 11.25L0.75 10.5L5.25 6L0.75 1.5L1.5 0.75L6 5.25L10.5 0.75L11.25 1.5L6.75 6L11.25 10.5L10.5 11.25L6 6.75L1.5 11.25Z"
+                                fill="#BDBDBD"
+                        />
+                    </svg>
+                </div>
+                <div class="schedule-column__cards-container">
+                    <div class="schedule-card">
+                        <div class="schedule-card__text-container">
+                            <h3 class="schedule-card__title">Gib Hub 공부하기dfdfdafdfaewefdfsdadfdfdfd</h3>
+                            <p class="schedule-card__body">add, commit ㅇㅇㅇㅇ아러이ㅏㅓㅁ아러ㅣ아리나러ㅣㅏㅓㅣ</p>
+                            <p class="schedule-card__caption">author by web</p>
+                        </div>
+                        <svg
+                                class="schedule-card__delete-btn"
+                                width="12"
+                                height="12"
+                                viewBox="0 0 12 12"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                    d="M1.5 11.25L0.75 10.5L5.25 6L0.75 1.5L1.5 0.75L6 5.25L10.5 0.75L11.25 1.5L6.75 6L11.25 10.5L10.5 11.25L6 6.75L1.5 11.25Z"
+                                    fill="#828282"
+                            />
+                        </svg>
+                    </div>
                 </div>
             </div>
         </main>

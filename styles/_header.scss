@@ -1,4 +1,3 @@
-@import "mixin";
 
 #header {
     height: 112px;
@@ -12,7 +11,7 @@
         font-size: 3.2rem;
         line-height: 46px;
 
-        color: map-get($header-color, black);
+        color: map-get($colors, black);
     }
     &__menu--btn {
         @include margin(auto, auto, auto, 84px);
