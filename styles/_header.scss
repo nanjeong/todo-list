@@ -1,19 +1,16 @@
-
 #header {
     height: 112px;
     @include flex-layout(unset, center);
     &__title {
         width: 171px;
         height: 46px;
-        @include margin(auto, auto, 80px);
-
+        margin-left: 80px;
         font-weight: 400;
         font-size: 3.2rem;
         line-height: 46px;
-
         color: map-get($colors, black);
     }
     &__menu--btn {
-        @include margin(auto, auto, auto, 84px);
+        margin: auto 84px auto auto;
     }
 }

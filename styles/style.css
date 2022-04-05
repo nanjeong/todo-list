@@ -163,27 +163,18 @@ body {
 #header__title {
   width: 171px;
   height: 46px;
-  margin-top: auto;
-  margin-bottom: auto;
   margin-left: 80px;
-  margin-right: auto;
   font-weight: 400;
   font-size: 3.2rem;
   line-height: 46px;
   color: #010101;
 }
 #header__menu--btn {
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: auto;
-  margin-right: 84px;
+  margin: auto 84px auto auto;
 }
 
 #main {
-  padding-top: 24px;
-  padding-bottom: 24px;
-  padding-left: 80px;
-  padding-right: 80px;
+  padding: 24px 80px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 16px;

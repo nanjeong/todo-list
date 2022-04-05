@@ -3,17 +3,3 @@
     justify-content: $justify-contents;
     align-items: $align-items;
 }
-
-@mixin margin($top: auto, $bottom: auto, $left: auto, $right: auto) {
-    margin-top: $top;
-    margin-bottom: $bottom;
-    margin-left: $left;
-    margin-right: $right;
-}
-
-@mixin padding($top, $bottom, $left, $right) {
-    padding-top: $top;
-    padding-bottom: $bottom;
-    padding-left: $left;
-    padding-right: $right;
-}
