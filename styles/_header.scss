@@ -10,7 +10,11 @@
         line-height: 46px;
         color: map-get($colors, black);
     }
-    &__menu--btn {
-        margin: auto 84px auto auto;
+    &__menu-btn {
+        @include flex-layout(center, center);
+        margin-left: auto;
+        margin-right: 84px;
+        width: 25px;
+        height: 25px;
     }
 }
