@@ -10,11 +10,23 @@
 //         - [ ] 글의 길이에 맞춰 박스 크기가 늘어난다.
 //     - [ ] 등록 버튼을 누르면 새로운 카드가 등록된다.
 //     - [ ] 카드 등록 박스는 사라진다.
+import { ScheduleCard } from "./scheduleCard.js";
+
+const state = {
+    "해야할 일": [
+        {
+            title: "git hub 공부",
+            body: "add commit",
+            caption: "author by web",
+        },
+    ],
+};
 
 export class ScheduleColumn {
     constructor(target, title) {
         this.$target = target;
         this.title = title;
+        this.id = new Date().getTime();
         this.init();
     }
 
@@ -25,6 +37,19 @@ export class ScheduleColumn {
     render() {
         const $scheduleColumn = this.template();
         this.$target.insertAdjacentHTML("beforeend", $scheduleColumn);
+        this.addCard();
+    }
+
+    addCard() {
+        const $cardsContainer = this.$target.querySelector(
+            `[data-id="${this.id}"]`
+        );
+        const cardData = {
+            title: "git hub 공부",
+            body: "add commit",
+            caption: "author by web",
+        };
+        new ScheduleCard($cardsContainer, cardData);
     }
 
     template() {
@@ -61,6 +86,7 @@ export class ScheduleColumn {
                     />
                 </svg>
             </div>
+            <div class="schedule-column__cards-container" data-id="${this.id}"></div>
         </div>`;
     }
 }

@@ -173,7 +173,6 @@ body {
   justify-content: unset;
   align-items: center;
 }
-
 #header__title {
   width: 171px;
   height: 46px;
@@ -183,7 +182,6 @@ body {
   line-height: 46px;
   color: #010101;
 }
-
 #header__menu-btn {
   display: flex;
   justify-content: center;
@@ -198,19 +196,17 @@ body {
   padding: 24px 80px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 16px;
+  gap: 16px;
 }
 
 .schedule-column {
   width: 308px;
 }
-
 .schedule-column__header {
   display: flex;
   justify-content: unset;
   align-items: center;
 }
-
 .schedule-column__title {
   height: 26px;
   font-weight: 700;
@@ -219,7 +215,6 @@ body {
   color: #010101;
   margin: 0px 8px;
 }
-
 .schedule-column__count-box {
   display: flex;
   justify-content: center;
@@ -231,7 +226,6 @@ body {
   border-radius: 20px;
   margin: 0 auto 0 0;
 }
-
 .schedule-column__count-number {
   width: 26px;
   height: 26px;
@@ -245,12 +239,10 @@ body {
   color: #010101;
   margin: 0px 10px;
 }
-
 .schedule-column__cards-container {
   height: 500px;
   overflow-y: scroll;
 }
-
 .schedule-column__cards-container::-webkit-scrollbar {
   display: none;
   /* Chrome, Safari, Opera*/
@@ -274,7 +266,6 @@ body {
   border-radius: 6px;
   margin: 16px 0px;
 }
-
 .schedule-card__text-container {
   flex-direction: column;
   display: flex;
@@ -283,7 +274,6 @@ body {
   width: 252px;
   min-height: 76px;
 }
-
 .schedule-card__title {
   min-height: 23px;
   font-weight: 700;
@@ -291,7 +281,6 @@ body {
   line-height: 23px;
   color: #010101;
 }
-
 .schedule-card__body {
   min-height: 20px;
   font-weight: 400;
@@ -300,7 +289,6 @@ body {
   color: #010101;
   margin: 8px 0px;
 }
-
 .schedule-card__caption {
   height: 17px;
   font-weight: 400;
@@ -308,7 +296,6 @@ body {
   line-height: 17px;
   color: #bdbdbd;
 }
-
 .schedule-card__delete-btn {
   margin-left: auto;
   width: 12px;
@@ -340,17 +327,14 @@ body {
   margin-left: auto;
   margin-bottom: 18.75px;
 }
-
 .history__item-list {
   height: 100%;
   overflow-y: scroll;
 }
-
 .history__item-list::-webkit-scrollbar {
   display: none;
   /* Chrome, Safari, Opera*/
 }
-
 .history__item-container {
   display: flex;
   justify-content: unset;
@@ -358,7 +342,6 @@ body {
   padding: 16px;
   background-color: #f4fce3;
 }
-
 .history__user-img-container {
   width: 40px;
   height: 40px;
@@ -366,19 +349,16 @@ body {
   border-radius: 20px;
   overflow: hidden;
 }
-
 .history__user-img {
   width: 100%;
   object-fit: cover;
 }
-
 .history__text-container {
   display: flex;
   justify-content: unset;
   align-items: unset;
   flex-direction: column;
 }
-
 .history__user-name {
   width: 244px;
   height: 23px;
@@ -387,7 +367,6 @@ body {
   line-height: 23px;
   color: #010101;
 }
-
 .history__body {
   width: 244px;
   height: 46px;
@@ -397,7 +376,6 @@ body {
   margin: 8px 0px;
   color: #010101;
 }
-
 .history__time-stamp {
   width: 244px;
   height: 20px;
@@ -406,4 +384,5 @@ body {
   line-height: 20px;
   color: #828282;
 }
+
 /*# sourceMappingURL=style.css.map */
