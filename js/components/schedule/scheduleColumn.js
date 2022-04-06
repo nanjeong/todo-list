@@ -1,6 +1,6 @@
 //- [ ] 유저가 스케줄 칼럼의 +버튼을 클릭하면 새로운 카드를 등록할 수 있다.
-//     - [ ] +버튼에 마우스가 올라가면 +버튼의 색이 변한다.
-//     - [ ] +버튼을 클릭하면 새 카드 등록 박스가 생성된다.
+//     - [x] +버튼에 마우스가 올라가면 +버튼의 색이 변한다.
+//     - [x] +버튼을 클릭하면 새 카드 등록 박스가 생성된다.
 //         - [ ] 카드 등록 박스에 제목을 입력하세요, 내용을 입력하세요가 적혀있다.
 //     - [ ] +버튼을 다시 클릭하면 카드 등록 박스가 사라진다.
 //     - [ ] 취소 버튼을 누르면 카드 등록 박스가 사라진다.
@@ -11,6 +11,7 @@
 //     - [ ] 등록 버튼을 누르면 새로운 카드가 등록된다.
 //     - [ ] 카드 등록 박스는 사라진다.
 import { ScheduleCard } from "./scheduleCard.js";
+import { ScheduleRegisterCard } from "./scheduleRegisterCard.js";
 
 const state = {
     "해야할 일": [
@@ -32,6 +33,19 @@ export class ScheduleColumn {
 
     init() {
         this.render();
+        this.setEvent();
+    }
+
+    setEvent() {
+        const $addBtn = this.$target.querySelector(".schedule-column__add-btn");
+        $addBtn.addEventListener("click", this.showRegisterCard.bind(this));
+    }
+
+    showRegisterCard() {
+        const $cardsContainer = this.$target.querySelector(
+            `[data-id="${this.id}"]`
+        );
+        new ScheduleRegisterCard($cardsContainer, this.id);
     }
 
     render() {
