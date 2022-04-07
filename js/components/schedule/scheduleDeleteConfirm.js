@@ -2,19 +2,52 @@ export class ScheduleDeleteConfirm {
     constructor({ target, passedEventHandler }) {
         this.$target = target;
         this.passedEventHandler = passedEventHandler;
+        this.$deleteConfirm;
         this.init();
     }
 
     init() {
         this.render();
+        this.setDOMElement();
+        this.setEvent();
     }
 
     render() {
+        this.$target.classList.toggle("schedule-card--active-red");
+
         const scheduleDeleteConfirmTemplate = this.template();
         document.body.insertAdjacentHTML(
             "beforeend",
             scheduleDeleteConfirmTemplate
         );
+    }
+
+    setDOMElement() {
+        this.$deleteConfirm = document.querySelector(".dim-layer");
+    }
+
+    setEvent() {
+        const $confirmCancelBtn = document.querySelector(
+            ".schedule-delete-confirm__cancel-btn"
+        );
+        const $confirmDeleteBtn = document.querySelector(
+            ".schedule-delete-confirm__delete-btn"
+        );
+
+        $confirmCancelBtn.addEventListener(
+            "click",
+            this.confirmCancelBtnClickEventHandler.bind(this)
+        );
+    }
+
+    confirmCancelBtnClickEventHandler() {
+        this.$target.classList.toggle("schedule-card--active-red");
+
+        this.removeDeleteConfirm();
+    }
+
+    removeDeleteConfirm() {
+        this.$deleteConfirm.remove();
     }
 
     template() {
