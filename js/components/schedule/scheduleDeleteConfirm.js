@@ -38,11 +38,20 @@ export class ScheduleDeleteConfirm {
             "click",
             this.confirmCancelBtnClickEventHandler.bind(this)
         );
+        $confirmDeleteBtn.addEventListener(
+            "click",
+            this.confirmDeleteBtnClickEventHandler.bind(this)
+        );
+    }
+
+    confirmDeleteBtnClickEventHandler() {
+        this.$target.classList.toggle("schedule-card--active-red");
+        this.removeDeleteConfirm();
+        this.passedEventHandler.removeCard(this.$target);
     }
 
     confirmCancelBtnClickEventHandler() {
         this.$target.classList.toggle("schedule-card--active-red");
-
         this.removeDeleteConfirm();
     }
 

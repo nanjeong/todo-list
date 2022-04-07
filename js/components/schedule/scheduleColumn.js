@@ -33,8 +33,16 @@ export class ScheduleColumn {
 
     renderCards() {
         const cards = this.scheduleModel.getScheduleCards();
+
         cards.forEach((cardData) => {
-            new ScheduleCard(this.$cardsContainer, cardData);
+            const scheduleCardParams = {
+                target: this.$cardsContainer,
+                cardData: cardData,
+                passedEventHandler: {
+                    removeCard: this.removeCard.bind(this),
+                },
+            };
+            new ScheduleCard(scheduleCardParams);
         });
     }
 
@@ -84,7 +92,20 @@ export class ScheduleColumn {
 
     addCard(cardData) {
         this.scheduleModel.addScheduleCard(cardData);
-        new ScheduleCard(this.$cardsContainer, cardData);
+        const scheduleCardParams = {
+            target: this.$cardsContainer,
+            cardData: cardData,
+            passedEventHandler: {
+                removeCard: this.removeCard.bind(this),
+            },
+        };
+        new ScheduleCard(scheduleCardParams);
+    }
+
+    removeCard($target) {
+        const cardId = $target.dataset.cardId;
+        this.scheduleModel.removeScheduleCard(cardId);
+        $target.remove();
     }
 
     template() {

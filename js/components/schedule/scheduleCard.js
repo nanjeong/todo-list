@@ -1,10 +1,11 @@
 import { ScheduleDeleteConfirm } from "./scheduleDeleteConfirm.js";
 
 export class ScheduleCard {
-    constructor(target, cardData) {
+    constructor({ target, cardData, passedEventHandler }) {
         this.$target = target;
         this.$scheduleCard;
         this.cardData = cardData;
+        this.passedEventHander = passedEventHandler;
         this.init();
     }
 
@@ -47,7 +48,7 @@ export class ScheduleCard {
         const scheduleDeleteConfirmParams = {
             target: this.$scheduleCard,
             passedEventHandler: {
-                removeScheduleCard: this.removeScheduleCard.bind(this),
+                removeCard: this.passedEventHander.removeCard.bind(this),
             },
         };
         new ScheduleDeleteConfirm(scheduleDeleteConfirmParams);
@@ -60,8 +61,6 @@ export class ScheduleCard {
     cardDeleteBtnMouseleaveEventHandler() {
         this.$scheduleCard.classList.toggle("schedule-card--active-red");
     }
-
-    removeScheduleCard(target) {}
 
     template() {
         return `<div class="schedule-card" data-card-id="${this.cardData.id}">
