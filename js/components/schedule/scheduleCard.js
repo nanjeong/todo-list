@@ -1,3 +1,5 @@
+import { ScheduleDeleteConfirm } from "./scheduleDeleteConfirm.js";
+
 export class ScheduleCard {
     constructor(target, cardData) {
         this.$target = target;
@@ -8,7 +10,7 @@ export class ScheduleCard {
 
     init() {
         this.render();
-        this.setDOMElement()
+        this.setDOMElement();
         this.setEvent();
     }
 
@@ -18,23 +20,48 @@ export class ScheduleCard {
     }
 
     setDOMElement() {
-        this.$scheduleCard = this.$target.querySelector(`[data-card-id="${this.cardData.id}"]`)
+        this.$scheduleCard = this.$target.querySelector(
+            `[data-card-id="${this.cardData.id}"]`
+        );
     }
 
     setEvent() {
-        const $scheduleCardDeleteBtn = this.$target.querySelector('.schedule-card__delete-btn');
-        $scheduleCardDeleteBtn.addEventListener('mouseenter', this.cardDeleteBtnMouseenterEventHandler.bind(this))
-
-        $scheduleCardDeleteBtn.addEventListener('mouseleave', this.cardDeleteBtnMouseleaveEventHandler.bind(this))
+        const $scheduleCardDeleteBtn = this.$target.querySelector(
+            ".schedule-card__delete-btn"
+        );
+        $scheduleCardDeleteBtn.addEventListener(
+            "mouseenter",
+            this.cardDeleteBtnMouseenterEventHandler.bind(this)
+        );
+        $scheduleCardDeleteBtn.addEventListener(
+            "mouseleave",
+            this.cardDeleteBtnMouseleaveEventHandler.bind(this)
+        );
+        $scheduleCardDeleteBtn.addEventListener(
+            "click",
+            this.cardDeleteBtnClickEventHandler.bind(this)
+        );
     }
 
-    cardDeleteBtnMouseenterEventHandler({target}) {
-        this.$scheduleCard.classList.toggle('schedule-card--active-red')
+    cardDeleteBtnClickEventHandler() {
+        const scheduleDeleteConfirmParams = {
+            target: this.$scheduleCard,
+            passedEventHandler: {
+                removeScheduleCard: this.removeScheduleCard.bind(this),
+            },
+        };
+        new ScheduleDeleteConfirm(scheduleDeleteConfirmParams);
     }
 
-    cardDeleteBtnMouseleaveEventHandler({target}) {
-        this.$scheduleCard.classList.toggle('schedule-card--active-red')
+    cardDeleteBtnMouseenterEventHandler() {
+        this.$scheduleCard.classList.toggle("schedule-card--active-red");
     }
+
+    cardDeleteBtnMouseleaveEventHandler() {
+        this.$scheduleCard.classList.toggle("schedule-card--active-red");
+    }
+
+    removeScheduleCard(target) {}
 
     template() {
         return `<div class="schedule-card" data-card-id="${this.cardData.id}">

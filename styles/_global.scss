@@ -57,3 +57,12 @@ button {
 .active {
     background-color: map-get($colors, blue);
 }
+
+.dim-layer {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 0px;
+    top: 0px;
+    background: rgba(1, 1, 1, 0.4);
+}

@@ -188,6 +188,15 @@ button {
   background-color: #0075de;
 }
 
+.dim-layer {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0px;
+  top: 0px;
+  background: rgba(1, 1, 1, 0.4);
+}
+
 #header {
   height: 112px;
   display: flex;
@@ -404,6 +413,60 @@ button {
   line-height: 20px;
   text-align: center;
   color: #ffffff;
+}
+
+.schedule-delete-confirm {
+  flex-direction: column;
+  padding: 24px;
+  position: absolute;
+  width: 400px;
+  height: 138px;
+  left: 520px;
+  top: 443px;
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgba(204, 204, 204, 0.5), 0px 2px 4px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4px);
+  border-radius: 6px;
+}
+.schedule-delete-confirm p {
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 26px;
+  color: #010101;
+}
+.schedule-delete-confirm__btns-container {
+  display: flex;
+  justify-content: unset;
+  align-items: flex-start;
+  width: 276px;
+  height: 40px;
+  margin-top: 24px;
+  margin-left: 76px;
+}
+.schedule-delete-confirm__cancel-btn {
+  padding: 10px;
+  width: 134px;
+  height: 40px;
+  background: #e0e0e0;
+  border-radius: 6px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #828282;
+}
+.schedule-delete-confirm__delete-btn {
+  padding: 10px;
+  width: 134px;
+  height: 40px;
+  border-radius: 6px;
+  margin-left: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #ffffff;
+  background-color: #0075de;
 }
 
 #history {
