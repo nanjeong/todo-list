@@ -8,7 +8,7 @@
 //     - [x] 내용을 입력하면 등록 버튼을 누를 수 있다.
 //         - [x] 내용 입력 글자수는 500자로 제한한다.
 //         - [x] 글의 길이에 맞춰 박스 크기가 늘어난다.
-//     - [ ] 등록 버튼을 누르면 새로운 카드가 등록된다.
+//     - [x] 등록 버튼을 누르면 새로운 카드가 등록된다.
 //     - [ ] 카드 등록 박스는 사라진다.
 import { ScheduleCard } from "./scheduleCard.js";
 import { ScheduleRegisterCard } from "./scheduleRegisterCard.js";
@@ -28,7 +28,6 @@ export class ScheduleColumn {
         this.$cardsContainer = this.$target.querySelector(
             `[data-id="${this.id}"]`
         );
-        this.addCard();
         this.setEvent();
     }
 
@@ -62,6 +61,7 @@ export class ScheduleColumn {
             id: this.id,
             passedEventHandler: {
                 removeRegisterCard: this.removeRegisterCard.bind(this),
+                addCard: this.addCard.bind(this),
             },
         };
         new ScheduleRegisterCard(scheduleRegisterCardParams);
@@ -72,12 +72,7 @@ export class ScheduleColumn {
         this.$target.insertAdjacentHTML("beforeend", $scheduleColumn);
     }
 
-    addCard() {
-        const cardData = {
-            title: "git hub 공부",
-            body: "add commit",
-            caption: "author by web",
-        };
+    addCard(cardData) {
         new ScheduleCard(this.$cardsContainer, cardData);
     }
 
