@@ -96,30 +96,35 @@ export class ScheduleCard {
     }
 
     createEditCard(selectedCard) {
-        const cardId = selectedCard.dataset.cardId;
-        const editCard = document.createElement("div");
+        const $cardTitle = selectedCard.querySelector(".schedule-card__title");
+        const $cardBody = selectedCard.querySelector(".schedule-card__body");
 
+        const cardId = selectedCard.dataset.cardId;
+        const cardTitle = $cardTitle.innerText;
+        const cardBody = $cardBody.innerText;
+
+        const editCard = document.createElement("div");
         editCard.classList.add("schedule-edit-card");
         editCard.dataset.cardId = cardId;
-        editCard.innerHTML = this.editCardTemplate();
+        editCard.innerHTML = this.editCardTemplate(cardTitle, cardBody);
 
         return editCard;
     }
 
-    editCardTemplate() {
+    editCardTemplate(cardTitle, cardBody) {
         return `<form class="schedule-edit-card__text-container">
                     <textarea 
                         class="schedule-edit-card__title"  
                         placeholder="제목을 입력하세요"
                         rows="1"
                         maxLength="${this.LIMIT}"
-                    ></textarea>
+                    >${cardTitle}</textarea>
                     <textarea 
                         class="schedule-edit-card__body" 
                         placeholder="내용을 입력하세요"
                         rows="1"
                         maxLength="${this.LIMIT}"
-                    ></textarea>
+                    >${cardBody}</textarea>
                 </form>
                 <div class="schedule-edit-card__btns-container">
                     <button class="schedule-edit-card__cancel-btn">
