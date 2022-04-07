@@ -416,6 +416,81 @@ button {
   color: #ffffff;
 }
 
+.schedule-edit-card {
+  display: flex;
+  justify-content: auto;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 16px;
+  width: 308px;
+  min-height: 108px;
+  background: #ffffff;
+  box-shadow: 0px 1px 30px rgba(224, 224, 224, 0.3);
+  border-radius: 6px;
+  margin: 16px 0px;
+  border: 1px solid #0075de;
+}
+
+.schedule-edit-card__text-container {
+  flex-direction: column;
+  display: flex;
+  justify-content: auto;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 76px;
+}
+
+.schedule-edit-card__title {
+  min-height: 23px;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 23px;
+  color: #010101;
+  width: 100%;
+}
+
+.schedule-edit-card__body {
+  min-height: 20px;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 20px;
+  color: #010101;
+  margin: 8px 0px;
+  width: 100%;
+}
+
+.schedule-edit-card__btns-container {
+  display: flex;
+  justify-content: unset;
+  align-items: unset;
+}
+
+.schedule-edit-card__cancel-btn {
+  padding: 10px;
+  width: 134px;
+  height: 40px;
+  background: #e0e0e0;
+  border-radius: 6px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #828282;
+}
+
+.schedule-edit-card__edit-btn {
+  padding: 10px;
+  width: 134px;
+  height: 40px;
+  border-radius: 6px;
+  margin-left: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #ffffff;
+}
+
 #history {
   display: flex;
   justify-content: unset;
