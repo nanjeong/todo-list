@@ -89,7 +89,9 @@ export class ScheduleRegisterCard {
             body: $cardBody.value,
             caption: "author by web",
         };
+
         this.passedEventHandler.addCard(cardData);
+        this.passedEventHandler.removeRegisterCard();
     }
 
     toggleRegisterBtn(booleanValue, $registerBtn) {
