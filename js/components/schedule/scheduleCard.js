@@ -6,6 +6,7 @@ export class ScheduleCard {
         this.$scheduleCard;
         this.cardData = cardData;
         this.passedEventHander = passedEventHandler;
+        this.$cardOnEditing;
         this.init();
     }
 
@@ -73,6 +74,13 @@ export class ScheduleCard {
         this.clickCount += 1;
 
         if (this.clickCount === 1) {
+            const $cancelBtn = this.$target.querySelector(
+                ".schedule-edit-card__cancel-btn"
+            );
+
+            if (target === $cancelBtn) {
+                this.cancelEdit(target);
+            }
             setTimeout(() => {
                 this.clickCount = 0;
             }, 300);
@@ -83,23 +91,35 @@ export class ScheduleCard {
         }
     }
 
+    cancelEdit(target) {
+        const $editCard = target.closest(".schedule-edit-card");
+        if (!$editCard) return;
+
+        this.$target.replaceChild(this.$cardOnEditing, $editCard);
+        this.$cardOnEditing = undefined;
+    }
+
     editScheduleCard(target) {
         this.replaceCard2EditCard(target);
     }
 
     replaceCard2EditCard(target) {
-        const selectedCard = target.closest(".schedule-card");
-        if (!selectedCard) return;
+        this.$cardOnEditing = target.closest(".schedule-card");
+        if (!this.$cardOnEditing) return;
 
-        const editCard = this.createEditCard(selectedCard);
-        this.$target.replaceChild(editCard, selectedCard);
+        const editCard = this.createEditCard();
+        this.$target.replaceChild(editCard, this.$cardOnEditing);
     }
 
-    createEditCard(selectedCard) {
-        const $cardTitle = selectedCard.querySelector(".schedule-card__title");
-        const $cardBody = selectedCard.querySelector(".schedule-card__body");
+    createEditCard() {
+        const $cardTitle = this.$cardOnEditing.querySelector(
+            ".schedule-card__title"
+        );
+        const $cardBody = this.$cardOnEditing.querySelector(
+            ".schedule-card__body"
+        );
 
-        const cardId = selectedCard.dataset.cardId;
+        const cardId = this.$cardOnEditing.dataset.cardId;
         const cardTitle = $cardTitle.innerText;
         const cardBody = $cardBody.innerText;
 
