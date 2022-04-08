@@ -1,6 +1,7 @@
 import { ScheduleCard } from "./scheduleCard.js";
 import { ScheduleRegisterCard } from "./scheduleRegisterCard.js";
 import { ScheduleModel } from "../model/scheduleModel.js";
+import { getId } from "../../utils.js";
 
 export class ScheduleColumn {
     constructor(target, scheduleColumnData) {
@@ -9,7 +10,7 @@ export class ScheduleColumn {
         this.$cardsContainer;
         this.scheduleModel = new ScheduleModel(scheduleColumnData);
         this.title = this.scheduleModel.getScheduleColumnTitle();
-        this.id = new Date().getTime();
+        this.id = getId();
         this.registerCardState = false;
 
         this.init();
