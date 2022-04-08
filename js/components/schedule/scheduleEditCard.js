@@ -15,7 +15,6 @@ export class ScheduleEditCard {
 
     render() {
         this.createEditCard();
-
         const parentNode = this.$originalCard.parentNode;
         parentNode.replaceChild(this.$editCard, this.$originalCard);
     }
@@ -91,6 +90,7 @@ export class ScheduleEditCard {
         const $cardBody = this.$editCard.querySelector(
             ".schedule-edit-card__body"
         );
+
         const cardId = this.$editCard.dataset.cardId;
 
         const cardData = {
@@ -111,7 +111,6 @@ export class ScheduleEditCard {
 
         const parentNode = this.$editCard.parentNode;
         parentNode.replaceChild(this.$originalCard, this.$editCard);
-
         this.passedEventHandler.updateCard(cardData);
     }
 
