@@ -22,6 +22,43 @@ export class ScheduleEditCard {
             "click",
             this.clickEventHandler.bind(this)
         );
+        this.$editCard.addEventListener(
+            "input",
+            this.inputEventHandler.bind(this)
+        );
+    }
+
+    inputEventHandler({ target }) {
+        const $cardTitle = this.$editCard.querySelector(
+            ".schedule-edit-card__title"
+        );
+        const $cardBody = this.$editCard.querySelector(
+            ".schedule-edit-card__body"
+        );
+
+        if (target === $cardTitle || target === $cardBody) {
+            const cardTitle = $cardTitle.value;
+            const $editBtn = this.$editCard.querySelector(
+                ".schedule-edit-card__edit-btn"
+            );
+
+            this.toggleEditBtn(cardTitle, $editBtn);
+            this.adjustInputHeight($cardTitle);
+            this.adjustInputHeight($cardBody);
+        }
+    }
+
+    toggleEditBtn(booleanValue, $editBtn) {
+        if (booleanValue) {
+            $editBtn.classList.replace("inactive", "active");
+        } else {
+            $editBtn.classList.replace("active", "inactive");
+        }
+    }
+
+    adjustInputHeight($input) {
+        $input.style.height = `auto`;
+        $input.style.height = `${$input.scrollHeight}px`;
     }
 
     clickEventHandler({ target }) {
@@ -36,14 +73,15 @@ export class ScheduleEditCard {
             this.cancelEdit();
         }
         if (target === $editBtn) {
-            this.editBtnClickEventHandler();
+            this.editBtnClickEventHandler(target);
         }
     }
 
-    editBtnClickEventHandler() {
-        // if (target.classList.contains("inactive")) {
-        //     return;
-        // }
+    editBtnClickEventHandler(target) {
+        if (target.classList.contains("inactive")) {
+            return;
+        }
+
         const $cardTitle = this.$editCard.querySelector(
             ".schedule-edit-card__title"
         );
@@ -107,7 +145,7 @@ export class ScheduleEditCard {
                     <button class="schedule-edit-card__cancel-btn">
                         취소
                     </button>
-                    <button class="schedule-edit-card__edit-btn inactive">
+                    <button class="schedule-edit-card__edit-btn active">
                         수정
                     </button>
                 </div>`;
