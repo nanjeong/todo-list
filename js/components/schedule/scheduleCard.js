@@ -30,7 +30,7 @@ export class ScheduleCard {
     setEvent() {
         this.setDeleteCardEvent();
 
-        this.$target.addEventListener(
+        this.$scheduleCard.addEventListener(
             "click",
             this.cardClickEventHandler().bind(this)
         );
@@ -97,13 +97,6 @@ export class ScheduleCard {
                 new ScheduleEditCard(scheduleEditCardParams);
             }
         };
-    }
-
-    setEvent() {
-        this.$target.addEventListener(
-            "click",
-            this.cardClickEventHandler().bind(this)
-        );
     }
 
     cardClickEventHandler() {

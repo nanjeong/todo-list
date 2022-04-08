@@ -1,5 +1,6 @@
+import { TEXT_LENGTH_LIMIT } from "../../utils.js";
+
 export class ScheduleEditCard {
-    LIMIT = 500;
     constructor({ original, passedEventHandler }) {
         this.$originalCard = original;
         this.passedEventHandler = passedEventHandler;
@@ -138,13 +139,13 @@ export class ScheduleEditCard {
                         class="schedule-edit-card__title"  
                         placeholder="제목을 입력하세요"
                         rows="1"
-                        maxLength="${this.LIMIT}"
+                        maxLength="${TEXT_LENGTH_LIMIT}"
                     >${cardTitle}</textarea>
                     <textarea 
                         class="schedule-edit-card__body" 
                         placeholder="내용을 입력하세요"
                         rows="1"
-                        maxLength="${this.LIMIT}"
+                        maxLength="${TEXT_LENGTH_LIMIT}"
                     >${cardBody}</textarea>
                 </form>
                 <div class="schedule-edit-card__btns-container">

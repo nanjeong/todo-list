@@ -34,7 +34,6 @@ export class ScheduleColumn {
 
     renderCards() {
         const cards = this.scheduleModel.getScheduleCards();
-
         cards.forEach((cardData) => {
             const scheduleCardParams = {
                 target: this.$cardsContainer,
@@ -88,8 +87,8 @@ export class ScheduleColumn {
     }
 
     render() {
-        const $scheduleColumn = this.template();
-        this.$target.insertAdjacentHTML("beforeend", $scheduleColumn);
+        const scheduleColumnTemplate = this.template();
+        this.$target.insertAdjacentHTML("beforeend", scheduleColumnTemplate);
     }
 
     addCard(cardData) {
