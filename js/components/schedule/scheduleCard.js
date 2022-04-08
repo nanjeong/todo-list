@@ -58,7 +58,7 @@ export class ScheduleCard {
         const scheduleDeleteConfirmParams = {
             target: this.$scheduleCard,
             passedEventHandler: {
-                removeCard: this.passedEventHander.removeCard.bind(this),
+                removeCard: this.passedEventHander.removeCard,
             },
         };
         new ScheduleDeleteConfirm(scheduleDeleteConfirmParams);
@@ -89,6 +89,9 @@ export class ScheduleCard {
                 const $selectedCard = target.closest(".schedule-card");
                 const scheduleEditCardParams = {
                     original: $selectedCard,
+                    passedEventHandler: {
+                        updateCard: this.passedEventHander.updateCard,
+                    },
                 };
 
                 new ScheduleEditCard(scheduleEditCardParams);

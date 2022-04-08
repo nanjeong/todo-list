@@ -1,7 +1,8 @@
 export class ScheduleEditCard {
     LIMIT = 500;
-    constructor({ original }) {
+    constructor({ original, passedEventHandler }) {
         this.$originalCard = original;
+        this.passedEventHandler = passedEventHandler;
         this.$editCard;
         this.init();
     }
@@ -88,11 +89,13 @@ export class ScheduleEditCard {
         const $cardBody = this.$editCard.querySelector(
             ".schedule-edit-card__body"
         );
+        const cardId = this.$editCard.dataset.cardId;
 
         const cardData = {
             title: $cardTitle.value,
             body: $cardBody.value,
             caption: "author by web",
+            id: cardId,
         };
 
         const $cardTitleOfCardOnEditing = this.$originalCard.querySelector(
@@ -106,6 +109,8 @@ export class ScheduleEditCard {
 
         const parentNode = this.$editCard.parentNode;
         parentNode.replaceChild(this.$originalCard, this.$editCard);
+
+        this.passedEventHandler.updateCard(cardData);
     }
 
     cancelEdit() {
@@ -123,6 +128,7 @@ export class ScheduleEditCard {
 
         this.$editCard = document.createElement("div");
         this.$editCard.classList.add("schedule-edit-card");
+        this.$editCard.dataset.cardId = this.$originalCard.dataset.cardId;
         this.$editCard.innerHTML = this.template(cardTitle, cardBody);
     }
 

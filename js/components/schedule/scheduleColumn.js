@@ -41,6 +41,7 @@ export class ScheduleColumn {
                 cardData: cardData,
                 passedEventHandler: {
                     removeCard: this.removeCard.bind(this),
+                    updateCard: this.updateCard.bind(this),
                 },
             };
             new ScheduleCard(scheduleCardParams);
@@ -98,6 +99,7 @@ export class ScheduleColumn {
             cardData: cardData,
             passedEventHandler: {
                 removeCard: this.removeCard.bind(this),
+                updateCard: this.updateCard.bind(this),
             },
         };
         new ScheduleCard(scheduleCardParams);
@@ -107,6 +109,10 @@ export class ScheduleColumn {
         const cardId = $target.dataset.cardId;
         this.scheduleModel.removeScheduleCard(cardId);
         $target.remove();
+    }
+
+    updateCard(cardData) {
+        this.scheduleModel.updateScheduleCard(cardData);
     }
 
     template() {
