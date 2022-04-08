@@ -28,6 +28,15 @@ export class ScheduleCard {
     }
 
     setEvent() {
+        this.setDeleteCardEvent();
+
+        this.$target.addEventListener(
+            "click",
+            this.cardClickEventHandler().bind(this)
+        );
+    }
+
+    setDeleteCardEvent() {
         const $scheduleCardDeleteBtn = this.$target.querySelector(
             ".schedule-card__delete-btn"
         );
@@ -61,13 +70,6 @@ export class ScheduleCard {
 
     cardDeleteBtnMouseleaveEventHandler() {
         this.$scheduleCard.classList.toggle("schedule-card--active-red");
-    }
-
-    setEvent() {
-        this.$target.addEventListener(
-            "click",
-            this.cardClickEventHandler().bind(this)
-        );
     }
 
     cardClickEventHandler() {
