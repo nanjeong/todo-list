@@ -88,13 +88,12 @@ export class ScheduleColumn {
     }
 
     render() {
-        const scheduleColumnTemplate = this.template();
-        this.$target.insertAdjacentHTML("beforeend", scheduleColumnTemplate);
+        const $scheduleColumn = this.template();
+        this.$target.insertAdjacentHTML("beforeend", $scheduleColumn);
     }
 
     addCard(cardData) {
         this.scheduleModel.addScheduleCard(cardData);
-
         const scheduleCardParams = {
             target: this.$cardsContainer,
             cardData: cardData,

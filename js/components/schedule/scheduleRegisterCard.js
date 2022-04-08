@@ -1,5 +1,3 @@
-import { getId } from "../../utils.js";
-
 export class ScheduleRegisterCard {
     LIMIT = 500;
     constructor({ target, id, passedEventHandler }) {
@@ -15,8 +13,8 @@ export class ScheduleRegisterCard {
     }
 
     render() {
-        const registerCardTemplate = this.template();
-        this.$target.insertAdjacentHTML("afterbegin", registerCardTemplate);
+        const $registerCard = this.template();
+        this.$target.insertAdjacentHTML("afterbegin", $registerCard);
     }
 
     setEvent() {
@@ -87,12 +85,10 @@ export class ScheduleRegisterCard {
         );
 
         const cardData = {
-            title: $cardTitle.value.replace(/\n/g, "<br>"),
-            body: $cardBody.value.replace(/\n/g, "<br>"),
+            title: $cardTitle.value.replace(/\n/g,'<br>'),
+            body: $cardBody.value.replace(/\n/g,'<br>'),
             caption: "author by web",
-            id: getId(),
         };
-
         this.passedEventHandler.addCard(cardData);
         this.passedEventHandler.removeRegisterCard();
     }
