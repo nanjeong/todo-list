@@ -1,5 +1,3 @@
-import { getId } from "../../utils.js";
-
 export class ScheduleModel {
     constructor(scheduleColumnData) {
         this.scheduleColumnData = scheduleColumnData;
@@ -14,7 +12,6 @@ export class ScheduleModel {
     }
 
     addScheduleCard(cardData) {
-        cardData.id = getId();
         this.scheduleColumnData.cards.push(cardData);
     }
 

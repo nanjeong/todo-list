@@ -30,7 +30,7 @@ export class ScheduleCard {
     setEvent() {
         this.setDeleteCardEvent();
 
-        this.$target.addEventListener(
+        this.$scheduleCard.addEventListener(
             "click",
             this.cardClickEventHandler().bind(this)
         );
