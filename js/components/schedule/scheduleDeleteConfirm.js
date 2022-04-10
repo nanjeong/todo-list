@@ -1,20 +1,17 @@
-export class ScheduleDeleteConfirm {
-    constructor({ target, passedEventHandler }) {
-        this.$target = target;
-        this.passedEventHandler = passedEventHandler;
+class ScheduleDeleteConfirm {
+    constructor() {
         this.$deleteConfirm;
-        this.init();
     }
 
-    init() {
+    init({ $scheduleCard, passedEventHandler }) {
+        passedEventHandler.toggleScheduleCardActiveRed()
+
         this.render();
         this.setDOMElement();
-        this.setEvent();
+        this.setEvent($scheduleCard, passedEventHandler);
     }
 
     render() {
-        this.$target.classList.toggle("schedule-card--active-red");
-
         const scheduleDeleteConfirmTemplate = this.template();
         document.body.insertAdjacentHTML(
             "beforeend",
@@ -26,32 +23,26 @@ export class ScheduleDeleteConfirm {
         this.$deleteConfirm = document.querySelector(".dim-layer");
     }
 
-    setEvent() {
-        const $confirmCancelBtn = document.querySelector(
-            ".schedule-delete-confirm__cancel-btn"
-        );
-        const $confirmDeleteBtn = document.querySelector(
-            ".schedule-delete-confirm__delete-btn"
-        );
-
-        $confirmCancelBtn.addEventListener(
-            "click",
-            this.confirmCancelBtnClickEventHandler.bind(this)
-        );
-        $confirmDeleteBtn.addEventListener(
-            "click",
-            this.confirmDeleteBtnClickEventHandler.bind(this)
-        );
+    setEvent($scheduleCard, passedEventHandler) {
+        this.$deleteConfirm.addEventListener('click', (e) => this.confirmClickEventHandler(e, $scheduleCard, passedEventHandler))
     }
 
-    confirmDeleteBtnClickEventHandler() {
-        this.$target.classList.toggle("schedule-card--active-red");
+    confirmClickEventHandler(event, $scheduleCard, passedEventHandler) {
+        if(event.target.classList.contains("schedule-delete-confirm__cancel-btn")) {
+            this.cancelBtnClickEventHandler(passedEventHandler)
+        }
+        if(event.target.classList.contains("schedule-delete-confirm__delete-btn")) {
+            this.deleteBtnClickEventHandler($scheduleCard, passedEventHandler)
+        }
+    }
+
+    deleteBtnClickEventHandler($scheduleCard, passedEventHandler) {
         this.removeDeleteConfirm();
-        this.passedEventHandler.removeCard(this.$target);
+        passedEventHandler.removeCard($scheduleCard)
     }
 
-    confirmCancelBtnClickEventHandler() {
-        this.$target.classList.toggle("schedule-card--active-red");
+    cancelBtnClickEventHandler(passedEventHandler) {
+        passedEventHandler.toggleScheduleCardActiveRed()
         this.removeDeleteConfirm();
     }
 
@@ -75,3 +66,5 @@ export class ScheduleDeleteConfirm {
     </div>`;
     }
 }
+
+export const scheduleDeleteConfirm = new ScheduleDeleteConfirm()
