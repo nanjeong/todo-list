@@ -96,30 +96,6 @@ export class ScheduleCard {
         };
     }
 
-    cardClickEventHandler() {
-        let clickCount = 0;
-        let timerId;
-
-        return ({ target }) => {
-            clickCount += 1;
-            if (clickCount === 1) {
-                timerId = setTimeout(() => {
-                    clickCount = 0;
-                }, 300);
-            } else if (clickCount === 2) {
-                clearTimeout(timerId);
-                clickCount = 0;
-
-                const $selectedCard = target.closest(".schedule-card");
-                const scheduleEditCardParams = {
-                    original: $selectedCard,
-                };
-
-                new ScheduleEditCard(scheduleEditCardParams);
-            }
-        };
-    }
-
     template() {
         return `<div class="schedule-card" data-card-id="${this.cardData.id}">
                     <div class="schedule-card__text-container">
