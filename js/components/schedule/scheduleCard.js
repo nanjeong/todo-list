@@ -60,7 +60,7 @@ export class ScheduleCard {
         const scheduleDeleteConfirmParams = {
             $scheduleCard: this.$scheduleCard,
             passedEventHandler: {
-                removeCard: this.passedEventHander.removeCard,
+                removeCard: this.passedEventHandler.removeCard,
                 toggleScheduleCardActiveRed: this.toggleScheduleCardActiveRed.bind(this)
             },
         };

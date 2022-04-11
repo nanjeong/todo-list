@@ -90,8 +90,8 @@ export class ScheduleRegisterCard {
         this.adjustInputHeight($cardBody);
     }
 
-    registerBtnClickEventHandler(e) {
-        if (e.target.classList.contains("inactive")) {
+    registerBtnClickEventHandler(target) {
+        if (target.classList.contains("inactive")) {
             return;
         }
 
