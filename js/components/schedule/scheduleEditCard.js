@@ -15,6 +15,7 @@ export class ScheduleEditCard {
     }
 
     init() {
+        this.createEditCard();
         this.render();
         this.setEvent();
     }
@@ -35,7 +36,6 @@ export class ScheduleEditCard {
     }
 
     render() {
-        this.createEditCard();
         const parentNode = this.$originalCard.parentNode;
         parentNode.replaceChild(this.$editCard, this.$originalCard);
     }

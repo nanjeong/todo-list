@@ -8,6 +8,7 @@ export class ScheduleCard {
         this.$scheduleCard;
         this.cardData = cardData;
         this.passedEventHandler = passedEventHandler;
+        this.editCard;
         this.init();
     }
 
@@ -74,16 +75,21 @@ export class ScheduleCard {
     }
 
     createEditCard(target) {
-        const $selectedCard = target.closest(".schedule-card");
-        const scheduleEditCardParams = {
-            original: $selectedCard,
-            passedEventHandler: {
-                updateCard: this.passedEventHandler.updateCard,
-                getCardData: this.passedEventHandler.getCardData,
-            },
-        };
+        if (!this.editCard) {
+            const $selectedCard = target.closest(".schedule-card");
+            const scheduleEditCardParams = {
+                original: $selectedCard,
+                passedEventHandler: {
+                    updateCard: this.passedEventHandler.updateCard,
+                    getCardData: this.passedEventHandler.getCardData,
+                },
+            };
 
-        new ScheduleEditCard(scheduleEditCardParams);
+            this.editCard = new ScheduleEditCard(scheduleEditCardParams);
+            return;
+        }
+
+        this.editCard.render();
     }
 
     template() {
