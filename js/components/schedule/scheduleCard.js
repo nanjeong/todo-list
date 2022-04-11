@@ -1,4 +1,4 @@
-import { scheduleDeleteConfirm } from "./scheduleDeleteConfirm.js";
+import { deleteConfirmInit } from "./scheduleDeleteConfirm.js";
 import { ScheduleEditCard } from "./scheduleEditCard.js";
 
 export class ScheduleCard {
@@ -62,7 +62,7 @@ export class ScheduleCard {
                 toggleScheduleCardActiveRed: this.toggleScheduleCardActiveRed.bind(this)
             },
         };
-        scheduleDeleteConfirm.init(scheduleDeleteConfirmParams)
+        deleteConfirmInit(scheduleDeleteConfirmParams)
     }
 
     toggleScheduleCardActiveRed() {
