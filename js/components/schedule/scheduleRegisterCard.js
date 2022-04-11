@@ -57,23 +57,27 @@ export class ScheduleRegisterCard {
         this.state = this.state ? false : true;
     }
 
-    registerCardClickEventHandler(e) {
-        if (e.target.classList.contains("schedule-register-card__cancel-btn")) {
+    registerCardClickEventHandler({ target }) {
+        const CANCLE_BTN = "schedule-register-card__cancel-btn";
+        const REGISTER_BTN = "schedule-register-card__register-btn";
+
+        if (target.classList.contains(CANCLE_BTN)) {
             this.passedEventHandler.removeRegisterCard();
         }
-        if (
-            e.target.classList.contains("schedule-register-card__register-btn")
-        ) {
-            this.registerBtnClickEventHandler(e);
+        if (target.classList.contains(REGISTER_BTN)) {
+            this.registerBtnClickEventHandler(target);
         }
     }
 
-    registerCardInputEventHandler(e) {
-        if (e.target.classList.contains("schedule-register-card__title")) {
-            this.cardTitleInputEventHandler(e.target);
+    registerCardInputEventHandler({ target }) {
+        const REGISTER_CARD_TITLE = "schedule-register-card__title";
+        const REGISTER_CARD_BODY = "schedule-register-card__body";
+
+        if (target.classList.contains(REGISTER_CARD_TITLE)) {
+            this.cardTitleInputEventHandler(target);
         }
-        if (e.target.classList.contains("schedule-register-card__body")) {
-            this.cardBodyInputEventHandler(e.target);
+        if (target.classList.contains(REGISTER_CARD_BODY)) {
+            this.cardBodyInputEventHandler(target);
         }
     }
 
