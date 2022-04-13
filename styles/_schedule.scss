@@ -86,6 +86,7 @@
         font-weight: 700;
         font-size: 1.6rem;
         line-height: 23px;
+        word-break: break-all;
         color: map-get($colors, black);
     }
 
