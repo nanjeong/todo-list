@@ -4,8 +4,8 @@ import {
     SCHEDULE_CARD_DELETE_BTN,
     SCHEDULE_CARD_TITLE,
 } from "../../utils/styleNames.js";
-import { deleteConfirmInit } from "./scheduleDeleteConfirm.js";
-import { ScheduleEditCard } from "./scheduleEditCard.js";
+import { deleteConfirmInit } from "../../../../js/components/schedule/scheduleDeleteConfirm.js";
+import { ScheduleEditCard } from "../../../../js/components/schedule/scheduleEditCard.js";
 
 export class ScheduleCard {
     constructor({ target, cardData, passedEventHandler, registerState }) {

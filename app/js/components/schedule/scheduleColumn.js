@@ -1,5 +1,5 @@
 import { ScheduleCard } from "./scheduleCard.js";
-import { ScheduleRegisterCard } from "./scheduleRegisterCard.js";
+import { ScheduleRegisterCard } from "../../../../js/components/schedule/scheduleRegisterCard.js";
 import * as scheduleModel from "../model/scheduleModel.js";
 import { changeCardNumber } from "./scheduleCardCount.js";
 import {

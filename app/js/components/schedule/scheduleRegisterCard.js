@@ -67,7 +67,7 @@ export class ScheduleRegisterCard {
 
     registerCardClickEventHandler(event) {
         event.preventDefault();
-        
+
         const target = event.target;
         if (target.classList.contains(REGISTER_CANCLE_BTN)) {
             this.passedEventHandler.removeRegisterCard();
