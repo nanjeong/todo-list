@@ -38,14 +38,18 @@ export const doubleClickEventHandler = (eventHandler) => {
 export const request2Server = async (url, method = "GET", cardData = {}) => {
     switch (method) {
         case "GET": {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
+                },
+            });
             const responseObj = await response.json();
             return responseObj;
         }
         case "DELETE": {
-            await fetch(url, { method })
-                .catch(error => console.error(error));
-            console.log('delete 요청')
+            await fetch(url, { method }).catch((error) => console.error(error));
+            console.log("delete 요청");
             return;
         }
         case "POST": {
@@ -55,9 +59,8 @@ export const request2Server = async (url, method = "GET", cardData = {}) => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(cardData),
-            })
-                .catch(error => console.error(error));
-            console.log('post요청')
+            }).catch((error) => console.error(error));
+            console.log("post요청");
             return;
         }
     }
