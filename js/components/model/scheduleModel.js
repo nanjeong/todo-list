@@ -1,8 +1,6 @@
-import { DEFAULT_AUTHOR } from "../../utils/styleNames.js";
-
 const findScheduleColumn = (columnId) => {
     return scheduleModel.find(
-        (scheduleColumnData) => scheduleColumnData.columnId === columnId
+        (scheduleColumnData) => scheduleColumnData.id === columnId
     );
 };
 
@@ -51,38 +49,8 @@ const getScheduleCardNumberInColumn = (columnId) => {
     return cardsInScheduleColumn.length;
 };
 
-const scheduleModel = [
-    {
-        columnId: "0",
-        title: "해야할 일",
-        cards: [
-            {
-                title: "제목",
-                body: "내용",
-                caption: DEFAULT_AUTHOR,
-                id: "0",
-            },
-            {
-                title: "제목2",
-                body: "내용2",
-                caption: DEFAULT_AUTHOR,
-                id: "1",
-            },
-        ],
-    },
-    {
-        columnId: "1",
-        title: "하고 있는 일",
-        cards: [
-            {
-                title: "제목",
-                body: "내용",
-                caption: DEFAULT_AUTHOR,
-                id: "3",
-            },
-        ],
-    },
-];
+const response = await fetch("http://localhost:3000/todos");
+const scheduleModel = await response.json();
 
 export {
     scheduleModel,

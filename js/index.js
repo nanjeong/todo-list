@@ -6,10 +6,7 @@ const $main = document.querySelector("#main");
 const scheduleColumns = [];
 
 scheduleModel.forEach((scheduleColumnData) => {
-    const scheduleColumn = new ScheduleColumn(
-        $main,
-        scheduleColumnData.columnId
-    );
+    const scheduleColumn = new ScheduleColumn($main, scheduleColumnData.id);
     scheduleColumns.push(scheduleColumn);
 });
 
