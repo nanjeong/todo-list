@@ -35,16 +35,26 @@ export const doubleClickEventHandler = (eventHandler) => {
     };
 };
 
-export const request2Server = async (url, method="GET") => {
+export const request2Server = async (url, method = "GET", cardData = {}) => {
     switch (method) {
         case "GET": {
-            const response = await fetch(url)
-            const responseObj = await response.json()
-            return responseObj
+            const response = await fetch(url);
+            const responseObj = await response.json();
+            return responseObj;
         }
         case "DELETE": {
-            await fetch(url, { method })
-            return
+            await fetch(url, { method });
+            return;
+        }
+        case "POST": {
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(cardData),
+            });
+            return;
         }
     }
-}
+};

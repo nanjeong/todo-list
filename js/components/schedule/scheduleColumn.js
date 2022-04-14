@@ -41,6 +41,9 @@ export class ScheduleColumn {
     renderCards() {
         const cards = scheduleModel.getScheduleCards(this.columnId);
         cards.forEach((cardData) => {
+            if (!cardData.id) {
+                return;
+            }
             const scheduleCardParams = {
                 target: this.$cards,
                 cardData: cardData,

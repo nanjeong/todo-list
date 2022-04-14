@@ -14,9 +14,24 @@ const getScheduleCards = (columnId) => {
     return findScheduleColumn(columnId).cards;
 };
 
+const getColumnTitle = (columnId) => {
+    return scheduleModel.find((column) => column.id === columnId).title;
+};
+
 const addScheduleCard = (columnId, cardData) => {
     const cardsInScheduleColumn = findScheduleColumn(columnId).cards;
     cardsInScheduleColumn.unshift(cardData);
+
+    const dataForServer = {
+        id: cardData.id,
+        title: cardData.title,
+        body: cardData.body,
+        caption: cardData.caption,
+        columnTitle: getColumnTitle(columnId),
+        columnId: columnId,
+    };
+
+    request2Server("http://localhost:3000/todos", "POST", dataForServer);
 };
 
 const removeScheduleCard = (columnId, cardId) => {
@@ -25,8 +40,7 @@ const removeScheduleCard = (columnId, cardId) => {
         (card) => card.id !== cardId
     );
 
-    request2Server(`http://localhost:3000/todos/${cardId}`, "DELETE")
-
+    request2Server(`http://localhost:3000/todos/${cardId}`, "DELETE");
 };
 
 const updateScheduleCard = (columnId, cardData) => {
@@ -51,22 +65,23 @@ const getScheduleCardDataById = (columnId, cardId) => {
 
 const getScheduleCardNumberInColumn = (columnId) => {
     const cardsInScheduleColumn = findScheduleColumn(columnId).cards;
-    return cardsInScheduleColumn.length;
+    return cardsInScheduleColumn.length - 1;
 };
 
 const parsingScheduleModel = (fetchedData) => {
     fetchedData.forEach((cardData) => {
-        let column = scheduleModel.find(columnData => columnData.id === cardData.columnId)
-        if(column) {
+        let column = scheduleModel.find(
+            (columnData) => columnData.id === cardData.columnId
+        );
+        if (column) {
             const card = {
                 title: cardData.title,
                 body: cardData.body,
                 caption: cardData.caption,
-                id: cardData.id
-            }
-            column.cards.push(card)
-        }
-        else {
+                id: cardData.id,
+            };
+            column.cards.push(card);
+        } else {
             column = {
                 id: cardData.columnId,
                 title: cardData.columnTitle,
@@ -75,18 +90,18 @@ const parsingScheduleModel = (fetchedData) => {
                         title: cardData.title,
                         body: cardData.body,
                         caption: cardData.caption,
-                        id: cardData.id
-                    }
-                ]
-            }
-            scheduleModel.push(column)
+                        id: cardData.id,
+                    },
+                ],
+            };
+            scheduleModel.push(column);
         }
-    })
-}
+    });
+};
 
-const fetchedData = await request2Server("http://localhost:3000/todos")
-const scheduleModel = []
-parsingScheduleModel(fetchedData)
+const fetchedData = await request2Server("http://localhost:3000/todos");
+const scheduleModel = [];
+parsingScheduleModel(fetchedData);
 
 export {
     scheduleModel,
