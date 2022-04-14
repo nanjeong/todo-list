@@ -77,7 +77,6 @@ export class ScheduleColumn {
     }
 
     removeRegisterCard() {
-        this.registerCard.changeState();
         const $registerCard = this.$cards.querySelector(`.${REGISTER_CARD}`);
         $registerCard.remove();
         this.registerCard.changeState();

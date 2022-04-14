@@ -11,7 +11,7 @@ const uuid = () => {
 
 export const getId = () => {
     const tokens = uuid().split("-");
-    return tokens[2] + tokens[1] + tokens[0] + tokens[3] + tokens[4];
+    return tokens[2];
 };
 
 export const TEXT_LENGTH_LIMIT = 500;
@@ -43,17 +43,21 @@ export const request2Server = async (url, method = "GET", cardData = {}) => {
             return responseObj;
         }
         case "DELETE": {
-            await fetch(url, { method });
+            await fetch(url, { method })
+                .catch(error => console.error(error));
+            console.log('delete 요청')
             return;
         }
         case "POST": {
-            fetch(url, {
+            await fetch(url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(cardData),
-            });
+            })
+                .catch(error => console.error(error));
+            console.log('post요청')
             return;
         }
     }

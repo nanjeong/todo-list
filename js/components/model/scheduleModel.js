@@ -18,11 +18,8 @@ const getColumnTitle = (columnId) => {
     return scheduleModel.find((column) => column.id === columnId).title;
 };
 
-const addScheduleCard = (columnId, cardData) => {
-    const cardsInScheduleColumn = findScheduleColumn(columnId).cards;
-    cardsInScheduleColumn.unshift(cardData);
-
-    const dataForServer = {
+const getCardDataForServer = (columnId, cardData) => {
+    return {
         id: cardData.id,
         title: cardData.title,
         body: cardData.body,
@@ -30,8 +27,17 @@ const addScheduleCard = (columnId, cardData) => {
         columnTitle: getColumnTitle(columnId),
         columnId: columnId,
     };
+}
 
-    request2Server("http://localhost:3000/todos", "POST", dataForServer);
+const addScheduleCard = (columnId, cardData) => {
+    const cardsInScheduleColumn = findScheduleColumn(columnId).cards;
+    cardsInScheduleColumn.unshift(cardData);
+
+    const dataForServer = getCardDataForServer(columnId, cardData)
+    history.push({
+        event: "post",
+        cardData: dataForServer
+    })
 };
 
 const removeScheduleCard = (columnId, cardId) => {
@@ -40,7 +46,10 @@ const removeScheduleCard = (columnId, cardId) => {
         (card) => card.id !== cardId
     );
 
-    request2Server(`http://localhost:3000/todos/${cardId}`, "DELETE");
+    history.push({
+        event: "delete",
+        cardId: cardId
+    })
 };
 
 const updateScheduleCard = (columnId, cardData) => {
@@ -54,6 +63,12 @@ const updateScheduleCard = (columnId, cardData) => {
 const insertScheduleCard = (columnId, cardData, index) => {
     const cardsInScheduleColumn = findScheduleColumn(columnId).cards;
     cardsInScheduleColumn.splice(index, 0, cardData);
+
+    const dataForServer = getCardDataForServer(columnId, cardData)
+    history.push({
+        event: "post",
+        cardData: dataForServer
+    })
 };
 
 const getScheduleCardDataById = (columnId, cardId) => {
@@ -103,6 +118,40 @@ const fetchedData = await request2Server("http://localhost:3000/todos");
 const scheduleModel = [];
 parsingScheduleModel(fetchedData);
 
+const history = []
+
+const applyHistory2ServerInterval = () => {
+    setInterval(() => {
+        if(!history.length) return
+        const curHistory = history.shift()
+        switch (curHistory.event) {
+            case "post": {
+                request2Server("http://localhost:3000/todos", "POST", curHistory.cardData)
+                break;
+            }
+            case "delete": {
+                request2Server(`http://localhost:3000/todos/${curHistory.cardId}`, "DELETE")
+                break;
+            }
+        }
+    }, 1000)
+}
+
+const applyHistory2Server = async () => {
+    for (const h of history) {
+        switch (h.event) {
+            case "post": {
+                await request2Server("http://localhost:3000/todos", "POST", h.cardData)
+                break;
+            }
+            case "delete": {
+                await request2Server(`http://localhost:3000/todos/${h.cardId}`, "DELETE")
+                break;
+            }
+        }
+    }
+}
+
 export {
     scheduleModel,
     getScheduleColumnTitle,
@@ -113,4 +162,6 @@ export {
     getScheduleCardDataById,
     insertScheduleCard,
     getScheduleCardNumberInColumn,
+    applyHistory2Server,
+    applyHistory2ServerInterval
 };
