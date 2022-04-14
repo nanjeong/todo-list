@@ -34,3 +34,17 @@ export const doubleClickEventHandler = (eventHandler) => {
         }
     };
 };
+
+export const request2Server = async (url, method="GET") => {
+    switch (method) {
+        case "GET": {
+            const response = await fetch(url)
+            const responseObj = await response.json()
+            return responseObj
+        }
+        case "DELETE": {
+            await fetch(url, { method })
+            return
+        }
+    }
+}

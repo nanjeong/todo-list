@@ -1,3 +1,5 @@
+import { request2Server } from "../../utils/utils.js";
+
 const findScheduleColumn = (columnId) => {
     return scheduleModel.find(
         (scheduleColumnData) => scheduleColumnData.id === columnId
@@ -22,6 +24,9 @@ const removeScheduleCard = (columnId, cardId) => {
     findScheduleColumn(columnId).cards = cardsInScheduleColumn.filter(
         (card) => card.id !== cardId
     );
+
+    request2Server(`http://localhost:3000/todos/${cardId}`, "DELETE")
+
 };
 
 const updateScheduleCard = (columnId, cardData) => {
@@ -49,8 +54,39 @@ const getScheduleCardNumberInColumn = (columnId) => {
     return cardsInScheduleColumn.length;
 };
 
-const response = await fetch("http://localhost:3000/todos");
-const scheduleModel = await response.json();
+const parsingScheduleModel = (fetchedData) => {
+    fetchedData.forEach((cardData) => {
+        let column = scheduleModel.find(columnData => columnData.id === cardData.columnId)
+        if(column) {
+            const card = {
+                title: cardData.title,
+                body: cardData.body,
+                caption: cardData.caption,
+                id: cardData.id
+            }
+            column.cards.push(card)
+        }
+        else {
+            column = {
+                id: cardData.columnId,
+                title: cardData.columnTitle,
+                cards: [
+                    {
+                        title: cardData.title,
+                        body: cardData.body,
+                        caption: cardData.caption,
+                        id: cardData.id
+                    }
+                ]
+            }
+            scheduleModel.push(column)
+        }
+    })
+}
+
+const fetchedData = await request2Server("http://localhost:3000/todos")
+const scheduleModel = []
+parsingScheduleModel(fetchedData)
 
 export {
     scheduleModel,
