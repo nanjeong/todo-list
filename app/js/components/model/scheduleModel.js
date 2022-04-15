@@ -114,7 +114,9 @@ const parsingScheduleModel = (fetchedData) => {
     });
 };
 
-const fetchedData = await request2Server("http://localhost:3000/todos");
+const fetchedData = await request2Server(
+    "https://nanbangtodo.herokuapp.com/todos"
+);
 const scheduleModel = [];
 parsingScheduleModel(fetchedData);
 
@@ -127,7 +129,7 @@ const applyHistory2ServerInterval = () => {
         switch (curHistory.event) {
             case "post": {
                 request2Server(
-                    "http://localhost:3000/todos",
+                    "https://nanbangtodo.herokuapp.com/todos",
                     "POST",
                     curHistory.cardData
                 );
@@ -135,7 +137,7 @@ const applyHistory2ServerInterval = () => {
             }
             case "delete": {
                 request2Server(
-                    `http://localhost:3000/todos/${curHistory.cardId}`,
+                    `https://nanbangtodo.herokuapp.com/todos/${curHistory.cardId}`,
                     "DELETE"
                 );
                 break;
@@ -149,7 +151,7 @@ const applyHistory2Server = async () => {
         switch (h.event) {
             case "post": {
                 await request2Server(
-                    "http://localhost:3000/todos",
+                    "https://nanbangtodo.herokuapp.com/todos",
                     "POST",
                     h.cardData
                 );
@@ -157,7 +159,7 @@ const applyHistory2Server = async () => {
             }
             case "delete": {
                 await request2Server(
-                    `http://localhost:3000/todos/${h.cardId}`,
+                    `https://nanbangtodo.herokuapp.com/todos/${h.cardId}`,
                     "DELETE"
                 );
                 break;
