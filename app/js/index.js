@@ -1,12 +1,13 @@
 import { ScheduleColumn } from "../js/components/schedule/scheduleColumn.js";
 import { mouseDownEventHandler } from "../js/components/schedule/scheduleCardDrag.js";
+import { getScheduleModel } from "./model/scheduleModel.js";
 import {
-    scheduleModel,
     applyHistory2Server,
     applyHistory2ServerInterval,
-} from "../js/components/model/scheduleModel.js";
+} from "./model/history.js";
 
 const $main = document.querySelector("#main");
+const scheduleModel = getScheduleModel();
 const scheduleColumns = [];
 
 scheduleModel.forEach((scheduleColumnData) => {

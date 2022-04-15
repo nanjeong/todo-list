@@ -38,18 +38,12 @@ export const doubleClickEventHandler = (eventHandler) => {
 export const request2Server = async (url, method = "GET", cardData = {}) => {
     switch (method) {
         case "GET": {
-            const response = await fetch(url, {
-                method: "GET",
-                headers: {
-                    "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
-                },
-            });
+            const response = await fetch(url);
             const responseObj = await response.json();
             return responseObj;
         }
         case "DELETE": {
             await fetch(url, { method }).catch((error) => console.error(error));
-            console.log("delete 요청");
             return;
         }
         case "POST": {
@@ -60,8 +54,49 @@ export const request2Server = async (url, method = "GET", cardData = {}) => {
                 },
                 body: JSON.stringify(cardData),
             }).catch((error) => console.error(error));
-            console.log("post요청");
             return;
         }
     }
+};
+
+export const getUrl = () => {
+    const DEV_URL = "http://localhost:3000/todos";
+    const DEPLOY_URL = "https://nanbangtodo.herokuapp.com/todos";
+    if (window.location.hostname !== "localhost") {
+        return DEPLOY_URL;
+    }
+    return DEV_URL;
+};
+
+export const parseScheduleModel = (fetchedData) => {
+    const scheduleModel = [];
+    fetchedData.forEach((cardData) => {
+        let column = scheduleModel.find(
+            (columnData) => columnData.id === cardData.columnId
+        );
+        if (column) {
+            const card = {
+                title: cardData.title,
+                body: cardData.body,
+                caption: cardData.caption,
+                id: cardData.id,
+            };
+            column.cards.push(card);
+        } else {
+            column = {
+                id: cardData.columnId,
+                title: cardData.columnTitle,
+                cards: [
+                    {
+                        title: cardData.title,
+                        body: cardData.body,
+                        caption: cardData.caption,
+                        id: cardData.id,
+                    },
+                ],
+            };
+            scheduleModel.push(column);
+        }
+    });
+    return scheduleModel
 };
