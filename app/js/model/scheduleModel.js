@@ -9,8 +9,8 @@ const init = async () => {
 };
 
 const getScheduleModel = () => {
-    return scheduleModel
-}
+    return scheduleModel;
+};
 
 const findScheduleColumn = (columnId) => {
     return scheduleModel.find(
@@ -78,9 +78,8 @@ const getScheduleCardNumberInColumn = (columnId) => {
     return cardsInScheduleColumn.length - 1;
 };
 
-await init();
-
 export {
+    init,
     getScheduleModel,
     getScheduleColumnTitle,
     getScheduleCards,

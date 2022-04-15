@@ -1,20 +1,24 @@
 import { ScheduleColumn } from "../js/components/schedule/scheduleColumn.js";
 import { mouseDownEventHandler } from "../js/components/schedule/scheduleCardDrag.js";
-import { getScheduleModel } from "./model/scheduleModel.js";
+import { init, getScheduleModel } from "./model/scheduleModel.js";
 import {
     applyHistory2Server,
     applyHistory2ServerInterval,
 } from "./model/history.js";
 
-const $main = document.querySelector("#main");
-const scheduleModel = getScheduleModel();
-const scheduleColumns = [];
+(async () => {
+    await init();
 
-scheduleModel.forEach((scheduleColumnData) => {
-    const scheduleColumn = new ScheduleColumn($main, scheduleColumnData.id);
-    scheduleColumns.push(scheduleColumn);
-});
+    const $main = document.querySelector("#main");
+    const scheduleModel = getScheduleModel();
+    const scheduleColumns = [];
 
-$main.addEventListener("mousedown", mouseDownEventHandler);
-window.addEventListener("beforeunload", applyHistory2Server);
-applyHistory2ServerInterval();
+    scheduleModel.forEach((scheduleColumnData) => {
+        const scheduleColumn = new ScheduleColumn($main, scheduleColumnData.id);
+        scheduleColumns.push(scheduleColumn);
+    });
+
+    $main.addEventListener("mousedown", mouseDownEventHandler);
+    window.addEventListener("beforeunload", applyHistory2Server);
+    applyHistory2ServerInterval();
+})();
